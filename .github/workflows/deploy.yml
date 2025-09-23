@@ -12,23 +12,13 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
 
-    - name: Install Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-
-    - name: Build React App
-      run: |
-        npm install
-        npm run build
-
     - name: Copy project files to EC2
       uses: appleboy/scp-action@v0.1.7
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_KEY }}
-        source: "."   # poora project copy karna (Dockerfile bhi jaye)
+        source: "."   # Dockerfile + project sab kuch copy karega
         target: "/var/www/frontend-action/"
 
     - name: Run Docker on EC2
