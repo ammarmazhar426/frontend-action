@@ -1,3 +1,21 @@
+ESLINT ERROR
+
+
+cd ~/feed-argo-front
+rm -rf node_modules package-lock.json
+npm install --save-dev typescript@4.9.5
+npm ls typescript
+node -e "require('eslint-plugin-jest'); console.log('plugin loads OK')"
+npm run build 2>&1 | tail -20
+npm ci --dry-run && echo "LOCK OK"
+
+git add package.json package-lock.json
+git commit -m "pin typescript 4.9.5 for eslint plugin"
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
